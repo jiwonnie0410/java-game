@@ -4,7 +4,6 @@ import main.Main;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import ui.Music;
 
 public class introUI extends JFrame {
 
@@ -26,6 +25,11 @@ public class introUI extends JFrame {
     private JButton exitButton = new JButton(exitButtonImage);
 
     public introUI() {
+        //BGM재생부
+        Music introMusic = new Music("music/background_music.wav", true); //화면시작할때 무한정 노래 재생
+        Music buttonClick = new Music("music/click.wav", false); //버튼 누를 때 효과음 한번만 재생
+        introMusic.run();
+
         setUndecorated(true); //바 없애기
         setTitle("warboy_bear");
         setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); //Main에 있음
@@ -34,11 +38,7 @@ public class introUI extends JFrame {
         setBackground(new Color(0, 0, 0, 0));
         setLayout(null);
 
-        /*
-        //BGM재생부
-        Music introMusic = new Music("music/intro.wav", true); //화면시작할때 무한정 노래 재생
-        introMusic.run();
-*/
+
 
         //게임시작
         startButton.setRolloverIcon(startButtonImageOn);
@@ -48,7 +48,9 @@ public class introUI extends JFrame {
         startButton.setFocusPainted(false);
         startButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent ae) {
-                //introMusic.close();
+                introMusic.close();
+                buttonClick.run();
+
                 dispose();  //현재창 종료
                 Main.changer = 1;    //메인에서 새로운 UI띄움
             }
@@ -63,9 +65,11 @@ public class introUI extends JFrame {
         helpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                buttonClick.run();
                 Main.changer = 3;    //메인에서 새로운 UI띄움
             }
         });
+
         //게임종료
         exitButton.setRolloverIcon(exitButtonImageOn);
         exitButton.setBounds(500, 550, 297, 106);
@@ -75,6 +79,7 @@ public class introUI extends JFrame {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                buttonClick.run();
                 System.exit(0);
             }
         });

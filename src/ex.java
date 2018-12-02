@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
+
 public class ex extends JFrame implements KeyListener{
 
     Image image;

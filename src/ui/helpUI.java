@@ -16,6 +16,8 @@ public class helpUI extends JFrame{
     private ImageIcon gobackButtonOn = new ImageIcon("image/button_on_goback.png");
     private JButton gobackButton = new JButton(gobackButtonImage);
 
+    Music buttonClick = new Music("music/click.wav", false);
+
     public helpUI() {
         setUndecorated(true); //바 없애기
         setTitle("warboy_bear");
@@ -35,7 +37,8 @@ public class helpUI extends JFrame{
         gobackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Main.changer = 0;    //메인에서 새로운 UI띄움
+                buttonClick.run();
+                dispose();    //메인에서 새로운 UI띄움
             }
         });
         add(gobackButton);

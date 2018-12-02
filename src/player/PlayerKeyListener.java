@@ -19,7 +19,7 @@ public class PlayerKeyListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         //keyCode에 특수키를 받아옴
         int keyCode = e.getKeyCode();
-        Player player = new Player();
+        //Player player = new Player();
         /*
         switch (keyCode) {
             case KeyEvent.VK_RIGHT:
